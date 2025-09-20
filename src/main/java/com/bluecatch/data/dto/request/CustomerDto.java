@@ -13,6 +13,7 @@ import static com.bluecatch.utils.RegexPattern.REGEX_ONLY_LETTERS;
 @ToString
 public class CustomerDto {
 
+    @NotNull(message = "firstName is required")
     @Pattern(regexp = REGEX_ONLY_LETTERS, message = "firstName is invalid")
     private String firstName;
 

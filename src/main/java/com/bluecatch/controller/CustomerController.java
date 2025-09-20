@@ -24,7 +24,7 @@ public class CustomerController {
     @PostMapping(value = "/save")
     @Operation(summary = "Method to save an customer",
             description = "Method to save an customer")
-    public ResponseEntity<CustomerResponse> save(@NotNull @Valid CustomerDto customerDto) {
+    public ResponseEntity<CustomerResponse> save(@NotNull @Valid @RequestBody CustomerDto customerDto) {
         return ResponseEntity.status(HttpStatus.OK).body(this.customerService.save(customerDto));
     }
 
