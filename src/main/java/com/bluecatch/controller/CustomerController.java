@@ -12,10 +12,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
+@Validated
 @RequestMapping(value = "api/v1.0/bluecatch/customer", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CustomerController {
 
