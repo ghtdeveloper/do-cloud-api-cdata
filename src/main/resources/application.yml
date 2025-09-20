@@ -1,0 +1,50 @@
+api:
+  info:
+    title: do-cloud-api-cdata
+    description: Basic API for purpose technical test (SEEK)
+    version: v1.0
+    contact:
+      name: do-cloud-api-cdata
+      email: p/a
+      url: p/a
+    license:
+      name: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0
+    termsOfService: p/a
+  servers:
+    server1:
+      url: http://localhost:${local.server.port}
+      description:
+
+server:
+  port: 8017
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/bluecatch?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: Tyopaff*afc25aD
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      idle-timeout: ${IDLE_TIMEOUT:30000}
+      max-lifetime: ${MAX_LIFETIME:1800000}
+      maximum-pool-size: ${POOL_SIZE:2}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: bluecatch
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+    show-sql: false
+
+logging:
+  logback:
+    rollingpolicy:
+      max-history: 7
+      max-file-size: 10MB
