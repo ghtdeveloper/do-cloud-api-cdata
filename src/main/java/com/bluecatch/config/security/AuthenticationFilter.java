@@ -38,6 +38,9 @@ public class AuthenticationFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String requestPath = httpRequest.getRequestURI();
 
+        /*
+           Se excluye la ruta de swagger de la autenticacion
+         */
         if (shouldSkipAuthentication(requestPath)) {
             filterChain.doFilter(request, response);
             return;
