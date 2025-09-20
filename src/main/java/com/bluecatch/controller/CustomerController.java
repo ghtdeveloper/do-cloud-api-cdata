@@ -2,6 +2,7 @@ package com.bluecatch.controller;
 
 import com.bluecatch.data.dto.request.CustomerDto;
 import com.bluecatch.data.dto.response.CustomerCollectionResponse;
+import com.bluecatch.data.dto.response.CustomerMetricsResponse;
 import com.bluecatch.data.dto.response.CustomerResponse;
 import com.bluecatch.service.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,11 +17,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 @RequiredArgsConstructor
 @RestController
 @Validated
 @RequestMapping(value = "api/v1.0/bluecatch/customer", produces = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name = "Customer",description = "data management API")
+@Tag(name = "Customer", description = "data management API")
 @SecurityRequirement(name = "apiKey")
 public class CustomerController {
 
@@ -48,5 +50,10 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.OK).body(customerService.findAll(page, pageSize));
     }
 
-
+    @GetMapping(value = "/metrics")
+    @Operation(summary = "Return metrics of the customer ages",
+            description = "Return metrics of the customer ages")
+    public ResponseEntity<CustomerMetricsResponse> findMetrics() {
+        return ResponseEntity.status(HttpStatus.OK).body(this.customerService.getDetailAgeData());
+    }
 }

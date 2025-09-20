@@ -3,9 +3,11 @@ package com.bluecatch.service;
 
 import com.bluecatch.data.dto.request.CustomerDto;
 import com.bluecatch.data.dto.response.CustomerCollectionResponse;
+import com.bluecatch.data.dto.response.CustomerMetricsResponse;
 import com.bluecatch.data.dto.response.CustomerResponse;
 import com.bluecatch.data.repository.CustomerRepository;
-import com.bluecatch.domain.CustomerEntity;
+import com.bluecatch.domain.entities.CustomerEntity;
+import com.bluecatch.domain.projection.CustomerMetricsProjection;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,5 +51,19 @@ public class CustomerService {
                 .customerResponses(entityPage.getContent().stream().map(CustomerEntity::toDto).toList())
                 .build();
     }
+
+    public CustomerMetricsResponse getDetailAgeData() {
+        if (customerRepository.getCustomerAgeMetrics() != null) {
+            CustomerMetricsProjection metrics = customerRepository.getCustomerAgeMetrics();
+            return CustomerMetricsResponse.builder()
+                    .averageAge(metrics.getAverageAge())
+                    .standardDeviation(metrics.getStandardDeviation())
+                    .minAge(metrics.getMinAge())
+                    .maxAge(metrics.getMaxAge())
+                    .build();
+        }
+        return null;
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package com.bluecatch.domain;
+package com.bluecatch.domain.entities;
 
 
 import com.bluecatch.data.dto.request.CustomerDto;
