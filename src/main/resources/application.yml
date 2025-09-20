@@ -48,3 +48,6 @@ logging:
     rollingpolicy:
       max-history: 7
       max-file-size: 10MB
+
+auth:
+ apiKey: ${API_KEY:Lkacafe928Acr%}
