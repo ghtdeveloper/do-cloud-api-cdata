@@ -2,6 +2,7 @@ package com.bluecatch.config;
 
 import com.bluecatch.service.AuthenticationService;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,17 +15,36 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class AuthenticationFilter extends GenericFilterBean {
 
+    private static final List<String> EXCLUDED_PATHS = Arrays.asList(
+            "/swagger-ui/",
+            "/v3/api-docs",
+            "/swagger-resources/",
+            "/webjars/",
+            "/swagger-ui.html"
+    );
     private final AuthenticationService authenticationService;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
-            throws IOException {
+            throws IOException, ServletException {
+
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String requestPath = httpRequest.getRequestURI();
+
+        if (shouldSkipAuthentication(requestPath)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         try {
-            Authentication authentication = authenticationService.getAuthentication((HttpServletRequest) request);
+            Authentication authentication = authenticationService.getAuthentication(httpRequest);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             filterChain.doFilter(request, response);
         } catch (Exception exp) {
@@ -37,5 +57,8 @@ public class AuthenticationFilter extends GenericFilterBean {
             writer.close();
         }
     }
-}
 
+    private boolean shouldSkipAuthentication(String requestPath) {
+        return EXCLUDED_PATHS.stream().anyMatch(requestPath::startsWith);
+    }
+}

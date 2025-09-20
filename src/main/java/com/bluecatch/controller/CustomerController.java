@@ -30,7 +30,7 @@ public class CustomerController {
     @Operation(summary = "Method to save an customer",
             description = "Method to save an customer")
     public ResponseEntity<CustomerResponse> save(@NotNull @Valid @RequestBody CustomerDto customerDto) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.customerService.save(customerDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.customerService.save(customerDto));
     }
 
     @GetMapping(value = "/{id}")

@@ -5,22 +5,30 @@ api:
     version: v1.0
     contact:
       name: do-cloud-api-cdata
-      email: p/a
-      url: p/a
+      email: n/a
+      url: n/a
     license:
       name: Apache 2.0
       url: https://www.apache.org/licenses/LICENSE-2.0
-    termsOfService: p/a
+    termsOfService: n/a
   servers:
     server1:
-      url: http://localhost:${local.server.port}
-      description:
+      url: http://localhost:${server.port}
+      description: Local Dev Server
 
 server:
   port: 8017
   error:
     whitelabel:
       enabled: false
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
 
 spring:
   datasource:
@@ -50,4 +58,4 @@ logging:
       max-file-size: 10MB
 
 auth:
- apiKey: ${API_KEY:Lkacafe928Acr%}
+  apiKey: ${API_KEY:Lkacafe928Acr%}
