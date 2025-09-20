@@ -1,4 +1,4 @@
-package com.bluecatch.config;
+package com.bluecatch.config.security;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,7 +1,7 @@
 package com.bluecatch.service;
 
-import com.bluecatch.config.ApiKeyAuthentication;
-import com.bluecatch.config.AuthProperties;
+import com.bluecatch.config.security.ApiKeyAuthentication;
+import com.bluecatch.config.security.AuthProperties;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;

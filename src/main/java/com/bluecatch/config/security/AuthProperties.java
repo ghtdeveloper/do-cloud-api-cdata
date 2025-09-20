@@ -1,4 +1,4 @@
-package com.bluecatch.config;
+package com.bluecatch.config.security;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

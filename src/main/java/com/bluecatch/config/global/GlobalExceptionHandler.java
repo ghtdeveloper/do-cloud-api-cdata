@@ -1,4 +1,4 @@
-package com.bluecatch.config;
+package com.bluecatch.config.global;
 
 import com.bluecatch.data.dto.response.ExceptionResponse;
 import com.bluecatch.utils.NotFoundException;

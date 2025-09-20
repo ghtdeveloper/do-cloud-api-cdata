@@ -1,4 +1,4 @@
-package com.bluecatch.config;
+package com.bluecatch.config.security;
 
 import com.bluecatch.service.AuthenticationService;
 import jakarta.servlet.FilterChain;

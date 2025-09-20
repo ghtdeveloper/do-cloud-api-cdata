@@ -1,4 +1,4 @@
-package com.bluecatch.config;
+package com.bluecatch.config.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
