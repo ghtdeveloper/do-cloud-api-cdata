@@ -20,4 +20,5 @@ public class CustomerResponse {
     private String maternalName;
     private Integer age;
     private LocalDate birthDate;
+    private Integer lifeExpectancy;
 }

@@ -8,6 +8,7 @@ import com.bluecatch.data.dto.response.CustomerResponse;
 import com.bluecatch.data.repository.CustomerRepository;
 import com.bluecatch.domain.entities.CustomerEntity;
 import com.bluecatch.domain.projection.CustomerMetricsProjection;
+import com.bluecatch.utils.CalculateAgeUtils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,9 +16,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -43,12 +44,18 @@ public class CustomerService {
 
     public CustomerCollectionResponse findAll(Integer page, Integer pageSize) {
         Page<CustomerEntity> entityPage = this.customerRepository.findAll(PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "id")));
+        List<CustomerResponse> customerResponseList = entityPage.stream().map(customerEntity -> {
+            if (customerEntity.getAge() != null) {
+                customerEntity.setLifeExpectancy(CalculateAgeUtils.calculateTime(customerEntity.getAge()));
+            }
+            return customerEntity.toDto();
+        }).toList();
         return CustomerCollectionResponse.builder()
                 .page(page)
                 .totalPages(pageSize)
                 .totalPages(entityPage.getTotalPages() - 1)
                 .totalElements(entityPage.getTotalElements())
-                .customerResponses(entityPage.getContent().stream().map(CustomerEntity::toDto).toList())
+                .customerResponses(customerResponseList)
                 .build();
     }
 

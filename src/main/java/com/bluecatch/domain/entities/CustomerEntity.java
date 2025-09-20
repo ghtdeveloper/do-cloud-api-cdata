@@ -38,6 +38,9 @@ public class CustomerEntity implements TransformFrom<CustomerDto, CustomerEntity
     @Column(name = "birthdate", updatable = false)
     private LocalDate birthdate;
 
+    @Transient
+    private Integer lifeExpectancy;
+
     @Override
     public CustomerResponse toDto() {
         return CustomerResponse.builder()
@@ -47,6 +50,7 @@ public class CustomerEntity implements TransformFrom<CustomerDto, CustomerEntity
                 .maternalName(this.maternalName)
                 .age(this.age)
                 .birthDate(this.birthdate)
+                .lifeExpectancy(this.lifeExpectancy)
                 .build();
     }
 
