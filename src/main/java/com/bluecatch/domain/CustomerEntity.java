@@ -56,8 +56,8 @@ public class CustomerEntity implements TransformFrom<CustomerDto, CustomerEntity
                 .firstName(customerDto.getFirstName())
                 .paternalName(customerDto.getPaternalName())
                 .maternalName(customerDto.getMaternalName())
-                .age(customerDto.getAge())
                 .birthdate(customerDto.getBirthDate())
+                .age(customerDto.getAge())
                 .build();
     }
 }

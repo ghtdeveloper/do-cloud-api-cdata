@@ -23,9 +23,6 @@ public class CustomerDto {
     @Pattern(regexp = REGEX_ONLY_LETTERS, message = "maternalName is invalid")
     private String maternalName;
 
-    @Min(value = 0, message = "Age must be greater than or equal to 0")
-    @Max(value = 150, message = "Age must be less than or equal to 150")
-    @Digits(integer = 3, fraction = 0, message = "Age must be a valid integer number")
     private Integer age;
 
     @Past(message = "birthDate must be in the past")

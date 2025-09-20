@@ -14,6 +14,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 @RequiredArgsConstructor
 @Service
 @Slf4j
@@ -23,8 +26,9 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
 
     public CustomerResponse save(CustomerDto customerDto) {
+        Integer calculatedAge = Period.between(customerDto.getBirthDate(), LocalDate.now()).getYears();
+        customerDto.setAge(calculatedAge);
         CustomerEntity customer = CustomerEntity.builder().build().from(customerDto);
-        //TODO SET EDAD CON LA FECHA DE NACIMIENTO VS AÑO ACTUAL
         return this.customerRepository.save(customer).toDto();
     }
 
