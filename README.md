@@ -33,6 +33,6 @@ Para acceder a la documentacion de la api a travez de swagger favor utilizar el 
 [Swagger-UI (Local)](http://localhost:8017/swagger-ui/index.html#/)
 [Swagger-UI (Server)](https://bluecatch-103911ee0fea.herokuapp.com/swagger-ui/index.html#/)
 
-PD: Debe de iniciar el proyecto antes de acceder al link de swagger.
+PD: Debe de iniciar el proyecto antes de acceder al link de swagger (en el caso del swagger (local)).
 
 ________________________________________
