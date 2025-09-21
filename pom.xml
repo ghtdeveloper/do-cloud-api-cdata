@@ -88,6 +88,11 @@
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-mysql</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.google.cloud.sql</groupId>
+			<artifactId>mysql-socket-factory-connector-j-8</artifactId>
+			<version>1.18.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -121,7 +126,7 @@
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 				<configuration>
-					<url>${DB_URL}</url>
+					<url>${JAWSDB_URL}</url>
 					<user>${DB_USER}</user>
 					<password>${DB_PASSWORD}</password>
 					<schemas>

@@ -43,7 +43,7 @@ public class CustomerService {
     }
 
     public CustomerCollectionResponse findAll(Integer page, Integer pageSize) {
-        Page<CustomerEntity> entityPage = this.customerRepository.findAll(PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "id")));
+        Page<CustomerEntity> entityPage = this.customerRepository.findAll(PageRequest.of(page, pageSize, Sort.by(Sort.Direction.ASC, "id")));
         List<CustomerResponse> customerResponseList = entityPage.stream().map(customerEntity -> {
             if (customerEntity.getAge() != null) {
                 customerEntity.setLifeExpectancy(CalculateAgeUtils.calculateTime(customerEntity.getAge()));
