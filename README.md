@@ -11,8 +11,14 @@ _Api desarrollada  para ver informacion referente a personas utilizando spring b
 
 ________________________________________
 `i. Como compilar` <br>
-`1. Swagger` <br>
+`2. Variables del entorno` <br>
+`3. Swagger` <br>
 ________________________________________
+
+### **Variables de entornos**:
+
+Antes de ejecutar el proyecto debe asegurarse de tener configuradas las siguientes variables, favor verificar el archivo  `enviroment.env`
+
 
 ### **Como ejecutar**:
 
@@ -21,11 +27,11 @@ Para la correcta compilación de este proyecto se deben hacer los siguientes pas
 - `mvn spring-boot:run`
 _______________________________________
 
-
 ### **Acceso Swagger UI**:
 
 Para acceder a la documentacion de la api a travez de swagger favor utilizar el siguiente enlance:
-[Swagger-UI](http://localhost:8017/swagger-ui/index.html#/)
+[Swagger-UI (Local)](http://localhost:8017/swagger-ui/index.html#/)
+[Swagger-UI (Server)](https://bluecatch-103911ee0fea.herokuapp.com/swagger-ui/index.html#/)
 
 PD: Debe de iniciar el proyecto antes de acceder al link de swagger.
 

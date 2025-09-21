@@ -1,0 +1,71 @@
+api:
+  info:
+    title: do-cloud-api-cdata
+    description: Basic API for purpose technical test (SEEK)
+    version: v1.0
+    contact:
+      name: do-cloud-api-cdata
+      email: n/a
+      url: n/a
+    license:
+      name: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0
+    termsOfService: n/a
+  servers:
+    server1:
+      url: http://localhost:${server.port}
+      description: Local Dev Server
+
+server:
+  port: ${PORT:8080}
+  error:
+    whitelabel:
+      enabled: false
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+spring:
+  datasource:
+    url: ${JAWSDB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      idle-timeout: ${IDLE_TIMEOUT:30000}
+      max-lifetime: ${MAX_LIFETIME:1800000}
+      maximum-pool-size: ${POOL_SIZE:2}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: ${DB_SCHEMAS}
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+    show-sql: false
+
+  flyway:
+    enabled: ${ENABLED_FLYWAY:false}
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: true
+    default-schema: ${DB_SCHEMAS}
+    clean-disabled: true
+    baseline-version: 1
+    baseline-description: "init DB"
+
+logging:
+  logback:
+    rollingpolicy:
+      max-history: 7
+      max-file-size: 10MB
+
+auth:
+  apiKey: ${API_KEY:Lkacafe928Acr%}
